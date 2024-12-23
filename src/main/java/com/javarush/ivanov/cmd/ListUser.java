@@ -1,7 +1,7 @@
-package com.javarush.khmelov.cmd;
+package com.javarush.ivanov.cmd;
 
-import com.javarush.khmelov.entity.User;
-import com.javarush.khmelov.service.UserService;
+import com.javarush.ivanov.entity.User;
+import com.javarush.ivanov.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 
 import java.util.Collection;
