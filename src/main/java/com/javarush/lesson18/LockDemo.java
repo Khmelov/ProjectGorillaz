@@ -21,6 +21,8 @@ public class LockDemo {
         Transaction tx1 = session1.beginTransaction();
             Transaction tx2 = session2.beginTransaction();
 
+        Game game1 = session1.find(Game.class, 1L, LockModeType.PESSIMISTIC_WRITE);
+            Game game2 = session2.find(Game.class, 1L, LockModeType.PESSIMISTIC_WRITE);
         System.out.println("1."+game1);
             System.out.println("2."+game2);
         game1.setCurrentQuestionId(1111L);
