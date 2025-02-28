@@ -1,7 +1,7 @@
 package com.javarush.khmelov.cmd;
 
-import com.javarush.khmelov.entity.Role;
-import com.javarush.khmelov.entity.User;
+import com.javarush.khmelov.dto.Role;
+import com.javarush.khmelov.dto.UserTo;
 import com.javarush.khmelov.service.ImageService;
 import com.javarush.khmelov.service.UserService;
 import com.javarush.khmelov.util.Go;
@@ -21,7 +21,7 @@ public class Signup implements Command {
     @Override
     @SneakyThrows
     public String doPost(HttpServletRequest request) {
-        User user = User.builder()
+        UserTo user = UserTo.builder()
                 .login(request.getParameter(Key.LOGIN))
                 .password(request.getParameter(Key.PASSWORD))
                 .role(Role.USER)

@@ -2,8 +2,8 @@ package com.javarush.khmelov.cmd;
 
 import com.javarush.khmelov.BaseIT;
 import com.javarush.khmelov.config.NanoSpring;
-import com.javarush.khmelov.entity.Role;
-import com.javarush.khmelov.entity.User;
+import com.javarush.khmelov.dto.Role;
+import com.javarush.khmelov.dto.UserTo;
 import com.javarush.khmelov.service.UserService;
 import com.javarush.khmelov.util.Key;
 import org.junit.jupiter.api.Test;
@@ -21,7 +21,7 @@ class EditUserIT extends BaseIT {
 
     @Test
     void whenOpenPage_thenCommandReturnJspPage() {
-        User user = userService.getAll().stream().findFirst().orElseThrow();
+        UserTo user = userService.getAll().stream().findFirst().orElseThrow();
         Mockito.when(request.getParameter(Key.ID)).thenReturn(user.getId().toString());
         String view = editUser.doGet(request);
         assertEquals("edit-user", view);

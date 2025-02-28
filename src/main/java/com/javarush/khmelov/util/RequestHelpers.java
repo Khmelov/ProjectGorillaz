@@ -1,6 +1,6 @@
 package com.javarush.khmelov.util;
 
-import com.javarush.khmelov.entity.User;
+import com.javarush.khmelov.dto.UserTo;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.experimental.UtilityClass;
@@ -24,14 +24,14 @@ public class RequestHelpers {
     public Long getId(HttpSession session) {
         Object user = session.getAttribute(Key.USER);
         return user != null
-                ? ((User) user).getId()
+                ? ((UserTo) user).getId()
                 : 0L;
     }
 
-    public Optional<User> getUser(HttpSession session) {
+    public Optional<UserTo> getUser(HttpSession session) {
         return Optional
                 .ofNullable(session.getAttribute(Key.USER))
-                .map(User.class::cast); // equivalent to .map(u -> (User) u);
+                .map(UserTo.class::cast); // equivalent to .map(u -> (User) u);
     }
 
     public static void createError(HttpServletRequest request, String errorMessage) {

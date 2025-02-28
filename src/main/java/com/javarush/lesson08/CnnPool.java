@@ -46,7 +46,7 @@ public class CnnPool {
         if (realConnection.isEmpty()) {
             init();
         }
-        return (Connection) proxies.take();
+        return proxies.take();
     }
 
     public static void close() throws SQLException {

@@ -3,7 +3,7 @@
 <c:import url="parts/header.jsp"/>
 <div class="container">
     <jsp:useBean id="user" scope="session"
-                 type="com.javarush.khmelov.entity.User"/>
+                 type="com.javarush.khmelov.dto.UserTo"/>
 
     <div class="px-4 py-5 my-5 text-center">
         <p class="lead mb-4">

@@ -1,4 +1,4 @@
-package com.javarush.khmelov.entity;
+package com.javarush.khmelov.dto;
 
 import lombok.Builder;
 import lombok.Data;

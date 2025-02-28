@@ -1,5 +1,6 @@
 package com.javarush.khmelov.entity;
 
+import com.javarush.khmelov.dto.Role;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.Hibernate;
@@ -59,10 +60,6 @@ public class User implements AbstractEntity {
     public void addGames(Game game) {
         game.setUserId(this.getId());
         games.add(game);
-    }
-
-    public String getImage() { //TODO move to DTO
-        return "user-" + id;
     }
 
 

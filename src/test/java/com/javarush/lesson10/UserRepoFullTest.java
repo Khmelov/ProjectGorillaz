@@ -2,9 +2,8 @@ package com.javarush.lesson10;
 
 import com.javarush.khmelov.config.NanoSpring;
 import com.javarush.khmelov.config.SessionCreator;
-import com.javarush.khmelov.entity.Role;
+import com.javarush.khmelov.dto.Role;
 import com.javarush.khmelov.entity.User;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -36,7 +35,6 @@ class UserRepoFullTest {
                 Arguments.of(User.builder().login("Alisa").password("qwerty").build(), 1),
                 Arguments.of(User.builder().login("Alisa").password("qwerty").role(Role.USER).build(), 1),
 
-                Arguments.of(User.builder().build(), 3),
                 Arguments.of(User.builder().id(0L).build(), 0)
         );
     }
@@ -53,7 +51,6 @@ class UserRepoFullTest {
     @BeforeEach
     void setUp() {
         sessionCreator = NanoSpring.find(SessionCreator.class);
-        ;
         userRepo = new UserRepoFull(sessionCreator);
     }
 

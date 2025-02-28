@@ -2,17 +2,11 @@ package com.javarush.lesson13;
 
 import com.javarush.khmelov.config.ApplicationProperties;
 import com.javarush.khmelov.config.Config;
-import com.javarush.khmelov.config.LiqubaseInit;
+import com.javarush.khmelov.config.NanoSpring;
 import com.javarush.khmelov.config.SessionCreator;
 import com.javarush.khmelov.entity.Quest;
 import com.javarush.khmelov.entity.Question;
 import com.javarush.khmelov.entity.User;
-import com.javarush.khmelov.repository.AnswerRepository;
-import com.javarush.khmelov.repository.QuestRepository;
-import com.javarush.khmelov.repository.QuestionRepository;
-import com.javarush.khmelov.repository.UserRepository;
-import com.javarush.khmelov.service.QuestService;
-import com.javarush.khmelov.service.UserService;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -60,15 +54,7 @@ public class AssociationDemo {
         //stupid init (like tomcat without NanoSpring)
         SessionCreator sessionCreator = magicSessionCreator();
         try (sessionCreator) {
-            UserRepository userRepository = new UserRepository(sessionCreator);
-            QuestRepository questRepository = new QuestRepository(sessionCreator);
-            QuestionRepository questionRepository = new QuestionRepository(sessionCreator);
-            AnswerRepository answerRepository = new AnswerRepository(sessionCreator);
-            UserService userService = new UserService(userRepository);
-            QuestService questService = new QuestService(userRepository, questRepository, questionRepository, answerRepository);
-            ApplicationProperties applicationProperties = new ApplicationProperties();
-            LiqubaseInit liqubaseInit = new LiqubaseInit(applicationProperties);
-            Config config = new Config(userService, questService, liqubaseInit);
+            Config config = NanoSpring.find(Config.class);
             config.fillEmptyRepository();
         }
     }
@@ -78,12 +64,6 @@ public class AssociationDemo {
         return new SessionCreator(new ApplicationProperties()) {
             private Session magicSession;
             private Session session;
-
-            @Override
-            public void close() {
-                session.close();
-                super.close();
-            }
 
             @Override
             public synchronized Session getSession() {
@@ -102,6 +82,11 @@ public class AssociationDemo {
                             });
                 }
                 return magicSession;
+            }
+
+            @Override
+            public void close() {
+                super.close();
             }
         };
     }

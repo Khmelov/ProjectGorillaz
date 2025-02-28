@@ -1,6 +1,7 @@
 package com.javarush.khmelov.config;
 
-import com.javarush.khmelov.entity.Role;
+import com.javarush.khmelov.dto.Role;
+import com.javarush.khmelov.dto.UserTo;
 import com.javarush.khmelov.entity.User;
 import com.javarush.khmelov.service.QuestService;
 import com.javarush.khmelov.service.UserService;
@@ -18,7 +19,7 @@ public class Config {
     public void fillEmptyRepository() {
         liqubaseInit.start();
         if (questService.getAll().isEmpty()) {
-            User admin = userService.get(1L).orElseThrow();
+            UserTo admin = userService.get(1L).orElseThrow();
             addDemoQuests(admin);
         }
     }
@@ -31,7 +32,7 @@ public class Config {
                 .build();
     }
 
-    private void addDemoQuests(User author) {
+    private void addDemoQuests(UserTo author) {
         Long authorId = author.getId();
         questService.create(
                 "Играем в неопознанный летающий объект (обязательный квест)",

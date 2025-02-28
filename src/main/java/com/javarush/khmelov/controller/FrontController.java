@@ -4,7 +4,7 @@ import com.javarush.khmelov.cmd.Command;
 import com.javarush.khmelov.config.Config;
 import com.javarush.khmelov.config.NanoSpring;
 import com.javarush.khmelov.config.SessionCreator;
-import com.javarush.khmelov.entity.Role;
+import com.javarush.khmelov.dto.Role;
 import com.javarush.khmelov.exception.AppException;
 import com.javarush.khmelov.util.Go;
 import com.javarush.khmelov.util.RequestHelpers;

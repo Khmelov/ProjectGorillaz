@@ -11,7 +11,6 @@ class SessionCreatorTest {
     @Test
     void getSession() {
         SessionCreator sessionCreator = NanoSpring.find(SessionCreator.class);
-        ;
         Session session = sessionCreator.getSession();
         Assertions.assertNotNull(session);
     }

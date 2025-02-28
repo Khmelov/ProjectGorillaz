@@ -2,8 +2,8 @@ package com.javarush.khmelov.cmd;
 
 import com.javarush.khmelov.BaseIT;
 import com.javarush.khmelov.config.NanoSpring;
-import com.javarush.khmelov.entity.Role;
-import com.javarush.khmelov.entity.User;
+import com.javarush.khmelov.dto.Role;
+import com.javarush.khmelov.dto.UserTo;
 import com.javarush.khmelov.service.QuestService;
 import com.javarush.khmelov.util.Go;
 import com.javarush.khmelov.util.Key;
@@ -20,7 +20,7 @@ class CreateQuestIT extends BaseIT {
 
     @Test
     void whenCreateQuest_thenQuestsCountIncreaseByOne() {
-        User admin = User.builder().id(1L).role(Role.ADMIN).build();
+        UserTo admin = UserTo.builder().id(1L).role(Role.ADMIN).build();
         when(session.getAttribute(Key.USER)).thenReturn(admin);
         when(request.getParameter(Key.NAME)).thenReturn("TestQuest");
         when(request.getParameter(Key.TEXT)).thenReturn("1: Test OK?\n2< Да\n3< Нет\n2+ win\n3- lost\n");

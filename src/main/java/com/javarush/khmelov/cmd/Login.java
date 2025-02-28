@@ -1,6 +1,6 @@
 package com.javarush.khmelov.cmd;
 
-import com.javarush.khmelov.entity.User;
+import com.javarush.khmelov.dto.UserTo;
 import com.javarush.khmelov.service.UserService;
 import com.javarush.khmelov.util.Go;
 import com.javarush.khmelov.util.Key;
@@ -20,7 +20,7 @@ public class Login implements Command {
     public String doPost(HttpServletRequest request) {
         String login = request.getParameter(Key.LOGIN);
         String password = request.getParameter(Key.PASSWORD);
-        Optional<User> user = userService.get(login, password);
+        Optional<UserTo> user = userService.get(login, password);
         if (user.isPresent()) {
             HttpSession session = request.getSession();
             session.setAttribute(Key.USER, user.get());

@@ -1,5 +1,6 @@
 package com.javarush.khmelov.entity;
 
+import com.javarush.khmelov.dto.GameState;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -28,11 +29,6 @@ public class Question implements AbstractEntity {
     private GameState gameState;
 
     @OneToMany(mappedBy = "questionId")
-
     //@Fetch(value = FetchMode.SUBSELECT)
     private final Collection<Answer> answers = new ArrayList<>();
-
-    public String getImage() {
-        return "question-" + id;
-    }
 }

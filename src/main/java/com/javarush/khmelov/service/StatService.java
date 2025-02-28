@@ -1,9 +1,9 @@
 package com.javarush.khmelov.service;
 
+import com.javarush.khmelov.dto.GameState;
+import com.javarush.khmelov.dto.UserStatistics;
 import com.javarush.khmelov.entity.Game;
-import com.javarush.khmelov.entity.GameState;
 import com.javarush.khmelov.entity.User;
-import com.javarush.khmelov.entity.UserStatistics;
 import com.javarush.khmelov.repository.Repository;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;

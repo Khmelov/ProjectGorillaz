@@ -10,7 +10,10 @@ import java.util.Collection;
 public class QuestionTo {
     Long id;
     Long questId;
-    String image;
     String text;
     Collection<AnswerTo> answers;
+
+    public String getImage() {
+        return "question-" + id;
+    }
 }

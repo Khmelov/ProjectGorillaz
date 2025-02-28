@@ -6,11 +6,8 @@ import com.javarush.khmelov.entity.Quest;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.io.IOException;
 
 class QuestRepoTest {
 
@@ -21,7 +18,6 @@ class QuestRepoTest {
     @BeforeEach
     void setUp() {
         sessionCreator = NanoSpring.find(SessionCreator.class);
-        ;
         session = sessionCreator.getSession();
         questRepo = new QuestRepo(sessionCreator);
     }

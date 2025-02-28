@@ -1,7 +1,7 @@
 package com.javarush.khmelov.filter;
 
-import com.javarush.khmelov.entity.Role;
-import com.javarush.khmelov.entity.User;
+import com.javarush.khmelov.dto.Role;
+import com.javarush.khmelov.dto.UserTo;
 import com.javarush.khmelov.util.Go;
 import com.javarush.khmelov.util.RequestHelpers;
 import jakarta.servlet.FilterChain;
@@ -52,7 +52,7 @@ public class AuthorizationFilter extends HttpFilter {
         String cmdUri = "/" + requestURI.split("[?#/]")[1];
         HttpSession session = req.getSession();
         Role role = RequestHelpers.getUser(session)
-                .map(User::getRole)
+                .map(UserTo::getRole)
                 .orElse(Role.GUEST);
         if (permissions.get(role).contains(cmdUri)) {
             chain.doFilter(req, res);

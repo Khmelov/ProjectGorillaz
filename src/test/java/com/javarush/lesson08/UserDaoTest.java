@@ -1,6 +1,6 @@
 package com.javarush.lesson08;
 
-import com.javarush.khmelov.entity.Role;
+import com.javarush.khmelov.dto.Role;
 import com.javarush.khmelov.entity.User;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;

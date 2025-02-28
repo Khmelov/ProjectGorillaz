@@ -53,7 +53,6 @@ enum CacheDemoSessionFactory {
                 .setProperty("hibernate.javax.cache.missing_cache_strategy", "fail")
                 //.setProperty("hibernate.cache.use_query_cache", "true")
                 .setProperty("hibernate.generate_statistics", "false");
-        ;
         //.configure(); //skip hibernate.cfg.xml
 
         configure.setPhysicalNamingStrategy(new CamelCaseToUnderscoresNamingStrategy());

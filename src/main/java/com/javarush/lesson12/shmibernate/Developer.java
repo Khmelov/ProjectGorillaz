@@ -1,8 +1,8 @@
 package com.javarush.lesson12.shmibernate;
 
 
+import com.javarush.khmelov.dto.Role;
 import com.javarush.khmelov.entity.AbstractEntity;
-import com.javarush.khmelov.entity.Role;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.*;

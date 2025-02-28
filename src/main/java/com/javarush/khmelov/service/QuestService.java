@@ -1,9 +1,16 @@
 package com.javarush.khmelov.service;
 
-import com.javarush.khmelov.entity.*;
+import com.javarush.khmelov.dto.GameState;
+import com.javarush.khmelov.dto.QuestTo;
+import com.javarush.khmelov.entity.Answer;
+import com.javarush.khmelov.entity.Quest;
+import com.javarush.khmelov.entity.Question;
+import com.javarush.khmelov.entity.User;
 import com.javarush.khmelov.exception.AppException;
-import com.javarush.khmelov.repository.*;
+import com.javarush.khmelov.mapping.Dto;
+import com.javarush.khmelov.repository.Repository;
 import jakarta.transaction.Transactional;
+import lombok.AllArgsConstructor;
 
 import java.util.Collection;
 import java.util.Map;
@@ -13,6 +20,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Transactional
+@AllArgsConstructor
 public class QuestService {
 
     public static final String QUEST_SYMBOL = ":";
@@ -26,24 +34,20 @@ public class QuestService {
     private final Repository<Question> questionRepository;
     private final Repository<Answer> answerRepository;
 
-    public QuestService(UserRepository userRepository, QuestRepository questRepository, QuestionRepository questionRepository, AnswerRepository answerRepository) {
-        this.userRepository = userRepository;
-        this.questRepository = questRepository;
-        this.questionRepository = questionRepository;
-        this.answerRepository = answerRepository;
-    }
-
+    private final Dto dto;
 
     public Collection<Quest> getAll() {
         return questRepository.getAll();
     }
 
-    public Optional<Quest> get(long id) {
-        return Optional.ofNullable(questRepository.get(id));
+    public Optional<QuestTo> get(long id) {
+        return Optional
+                .ofNullable(questRepository.get(id))
+                .map(dto::from);
     }
 
 
-    public Optional<Quest> create(String name, String text, Long userId) {
+    public Optional<QuestTo> create(String name, String text, Long userId) {
         Map<Long, Question> map = fillDraftMap(text);
         if (map.isEmpty()) {
             return Optional.empty();
@@ -73,7 +77,7 @@ public class QuestService {
         map.values().stream()
                 .flatMap(q -> q.getAnswers().stream())
                 .forEach(answerRepository::create);
-        return Optional.of(quest);
+        return Optional.of(quest).map(dto::from);
     }
 
     private Long findStartQuestionLabel(String text) {

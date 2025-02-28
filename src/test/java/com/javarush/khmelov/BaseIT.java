@@ -2,8 +2,8 @@ package com.javarush.khmelov;
 
 import com.javarush.khmelov.config.Config;
 import com.javarush.khmelov.config.NanoSpring;
-import com.javarush.khmelov.entity.Role;
-import com.javarush.khmelov.entity.User;
+import com.javarush.khmelov.dto.Role;
+import com.javarush.khmelov.dto.UserTo;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
@@ -20,9 +20,9 @@ public class BaseIT extends ContainerIT {
     protected final Config config;
     protected final ServletConfig servletConfig;
     protected final ServletContext servletContext;
-    protected User testAdmin;
-    protected User testUser;
-    protected User testGuest;
+    protected UserTo testAdmin;
+    protected UserTo testUser;
+    protected UserTo testGuest;
 
     protected BaseIT() {
         //app config
@@ -38,19 +38,19 @@ public class BaseIT extends ContainerIT {
         session = mock(HttpSession.class);
         when(request.getSession()).thenReturn(session);
         //test data
-        testAdmin = User.builder()
+        testAdmin = UserTo.builder()
                 .id(1L)
                 .login("testAdmin")
                 .password("testAdmin")
                 .role(Role.ADMIN)
                 .build();
-        testUser = User.builder()
+        testUser = UserTo.builder()
                 .id(2L)
                 .login("testUser")
                 .password("testUser")
                 .role(Role.USER)
                 .build();
-        testGuest = User.builder()
+        testGuest = UserTo.builder()
                 .id(3L)
                 .login("testGuest")
                 .password("testGuest")

@@ -12,7 +12,7 @@ public class PreparedStatementDemo {
     public static void main(String[] args) throws SQLException {
         Connection connection = CnnPool.get();
         try (connection;
-             PreparedStatement pst = connection.prepareStatement(SELECT_FROM_USERS);
+             PreparedStatement pst = connection.prepareStatement(SELECT_FROM_USERS)
         ) {
             pst.setLong(1, 1L);
             ResultSet resultSet = pst.executeQuery();

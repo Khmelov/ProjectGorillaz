@@ -1,8 +1,8 @@
 package com.javarush.khmelov.cmd;
 
-import com.javarush.khmelov.entity.Game;
-import com.javarush.khmelov.entity.Question;
-import com.javarush.khmelov.entity.User;
+import com.javarush.khmelov.dto.GameTo;
+import com.javarush.khmelov.dto.QuestionTo;
+import com.javarush.khmelov.dto.UserTo;
 import com.javarush.khmelov.service.GameService;
 import com.javarush.khmelov.service.QuestionService;
 import com.javarush.khmelov.util.Go;
@@ -28,10 +28,10 @@ public class PlayGame implements Command {
     @Override
     public String doGet(HttpServletRequest request) {
         Long questId = Long.parseLong(request.getParameter(Key.QUEST_ID));
-        Optional<User> user = RequestHelpers.getUser(request.getSession());
+        Optional<UserTo> user = RequestHelpers.getUser(request.getSession());
         if (user.isPresent()) {
             Long userId = user.get().getId();
-            Optional<Game> game = gameService.getGame(questId, userId);
+            Optional<GameTo> game = gameService.getGame(questId, userId);
             if (game.isPresent()) {
                 showOneQuestion(request, game.get());
                 return getView();
@@ -53,14 +53,14 @@ public class PlayGame implements Command {
     public String doPost(HttpServletRequest request) {
         Long gameId = RequestHelpers.getId(request);
         Long answerId = RequestHelpers.getId(request, Key.ANSWER);
-        Optional<Game> game = gameService.processOneStep(gameId, answerId);
+        Optional<GameTo> game = gameService.processOneStep(gameId, answerId);
         if (game.isPresent()) {
             if (answerId == 0 && request.getParameter(Key.GAME) != null) {
                 String message = "Нужно выбрать какой-то ответ";
                 log.warn(message);
                 RequestHelpers.createError(request, message);
             }
-            Game currentGame = game.get();
+            GameTo currentGame = game.get();
             return "%s?questId=%d&id=%d".formatted(Go.PLAY_GAME, game.get().getQuestId(), game.get().getId());
         } else {
             String message = "Нет такой игры";
@@ -70,9 +70,9 @@ public class PlayGame implements Command {
         }
     }
 
-    private void showOneQuestion(HttpServletRequest request, Game game) {
+    private void showOneQuestion(HttpServletRequest request, GameTo game) {
         request.setAttribute(Key.GAME, game);
-        Optional<Question> question = questionService.get(game.getCurrentQuestionId());
+        Optional<QuestionTo> question = questionService.get(game.getCurrentQuestionId());
         request.setAttribute(Key.QUESTION, question.orElseThrow());
     }
 }

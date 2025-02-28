@@ -1,7 +1,7 @@
 package com.javarush.lesson12.hibernate;
 
+import com.javarush.khmelov.dto.Role;
 import com.javarush.khmelov.entity.AbstractEntity;
-import com.javarush.khmelov.entity.Role;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Type;

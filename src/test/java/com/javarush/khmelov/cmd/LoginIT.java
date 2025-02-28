@@ -2,7 +2,7 @@ package com.javarush.khmelov.cmd;
 
 import com.javarush.khmelov.BaseIT;
 import com.javarush.khmelov.config.NanoSpring;
-import com.javarush.khmelov.entity.User;
+import com.javarush.khmelov.dto.UserTo;
 import com.javarush.khmelov.util.Key;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -24,7 +24,7 @@ class LoginIT extends BaseIT {
         Assertions.assertEquals("/profile", actualRedirect);
 
         verify(session)
-                .setAttribute(eq(Key.USER), any(User.class));
+                .setAttribute(eq(Key.USER), any(UserTo.class));
     }
 
     @Test

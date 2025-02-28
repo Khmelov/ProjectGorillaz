@@ -134,6 +134,5 @@ public class PerformanceDemo {
             tx.rollback();
         }
         session.close();
-        sessionCreator.close();
     }
 }

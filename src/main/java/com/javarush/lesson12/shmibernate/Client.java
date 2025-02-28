@@ -1,6 +1,6 @@
 package com.javarush.lesson12.shmibernate;
 
-import com.javarush.khmelov.entity.Role;
+import com.javarush.khmelov.dto.Role;
 import com.javarush.khmelov.repository.Repository;
 
 public class Client {
