@@ -13,7 +13,6 @@ public class JdbcDemoApp {
             """;
 
     public static void main(String[] args) throws SQLException {
-        Cnn cnn = new Cnn();
         try (Connection connection = Cnn.get();
              Statement statement = connection.createStatement()) {
 
