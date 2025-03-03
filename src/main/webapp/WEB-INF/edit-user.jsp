@@ -1,13 +1,33 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="head.jsp" %>
+<%@include file="parts/header.jsp" %>
 <body>
 <div class="container">
-    <form class="form-horizontal" method="post">
+    <form class="form-horizontal" method="post" enctype="multipart/form-data">
         <fieldset>
 
             <!-- Form Name -->
             <legend>Edit user:</legend>
-
+            <!-- File Button -->
+            <p class="text-muted">Нажмите для загрузки фото</p>
+            <!-- File Button -->
+            <div class="form-group">
+                <label for="image">
+                    <img id="previewId" src="images/${requestScope.user.image}"  width="250px"
+                         alt="${requestScope.user.image}">
+                </label>
+                <input onchange="PreviewImage('image','previewId');" id="image" name="image"
+                       style="visibility:hidden;"
+                       class="input-file" type="file">
+                <script type="text/javascript">
+                    function PreviewImage(inputFileId, imageId) {
+                        let oFReader = new FileReader();
+                        oFReader.readAsDataURL(document.getElementById(inputFileId).files[0]);
+                        oFReader.onload = function (oFREvent) {
+                            document.getElementById(imageId).src = oFREvent.target.result;
+                        };
+                    }
+                </script>
+            </div>
             <!-- Text input-->
             <div class="form-group">
                 <label class="col-md-4 control-label" for="login">Login</label>
@@ -35,7 +55,7 @@
                            placeholder="your password"
                            class="form-control input-md"
                            required="">
-                    <span class="help-block">min 8 symb</span>
+                    <span class="help-block">min 8 symbols</span>
                 </div>
             </div>
 
@@ -69,5 +89,6 @@
         </fieldset>
     </form>
 </div>
-</body>
+<%@include file="parts/footer.jsp" %>
+
 

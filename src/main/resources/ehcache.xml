@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.ehcache.org/v3"
+        xsi:schemaLocation="http://www.ehcache.org/v3 http://www.ehcache.org/schema/ehcache-core-3.0.xsd">
+
+    <cache-template name="entity-cache">
+        <expiry>
+            <ttl unit="seconds">5</ttl>
+        </expiry>
+        <heap-store-settings>
+            <max-object-graph-size>1000</max-object-graph-size>
+        </heap-store-settings>
+    </cache-template>
+
+    <cache alias="com.javarush.khmelov.entity.Answer" uses-template="entity-cache">
+        <resources>
+            <offheap unit="MB">10</offheap>
+        </resources>
+    </cache>
+
+
+    <cache alias="MyQuestion">
+        <resources>
+            <offheap unit="MB">10</offheap>
+        </resources>
+    </cache>
+
+    <cache alias="com.javarush.khmelov.entity.User">
+        <resources>
+            <offheap unit="MB">10</offheap>
+        </resources>
+    </cache>
+
+    <cache alias="com.javarush.khmelov.entity.UserInfo">
+        <resources>
+            <offheap unit="MB">10</offheap>
+        </resources>
+    </cache>
+
+    <!--
+
+    hibernate.cfg.xml or application.properties or in configuration.setProperties()
+
+    <property name="hibernate.javax.cache.uri">/ehcache.xml</property>
+    <property name="hibernate.cache.region.factory_class">jcache</property>
+    <property name="hibernate.javax.cache.provider">org.ehcache.jsr107.EhcacheCachingProvider</property>
+    <property name="hibernate.cache.use_second_level_cache">true</property>
+    <property name="hibernate.javax.cache.missing_cache_strategy">create</property>
+    <property name="hibernate.cache.use_query_cache">true</property>
+    <property name="hibernate.generate_statistics">false</property>
+
+    -->
+
+</config>

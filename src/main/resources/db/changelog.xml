@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <include file="history/2025/01/16-01-role.xml" relativeToChangelogFile="true"/>
+    <include file="history/2025/01/16-02-users.xml" relativeToChangelogFile="true"/>
+    <include file="history/2025/01/16-03-users-data.xml" relativeToChangelogFile="true"/>
+    <include file="history/2025/01/16-04-game-state.xml" relativeToChangelogFile="true"/>
+    <include file="history/2025/01/16-05-quest.xml" relativeToChangelogFile="true"/>
+    <include file="history/2025/01/16-06-question.xml" relativeToChangelogFile="true"/>
+    <include file="history/2025/01/16-07-answer.xml" relativeToChangelogFile="true"/>
+    <include file="history/2025/01/16-08-game.xml" relativeToChangelogFile="true"/>
+    
+    <include file="history/2025/02/11-01-userinfo.xml" relativeToChangelogFile="true"/>
+    <include file="history/2025/02/11-02-users-info-data.xml" relativeToChangelogFile="true"/>
+
+</databaseChangeLog>

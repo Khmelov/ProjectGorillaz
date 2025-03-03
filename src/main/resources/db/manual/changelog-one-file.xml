@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="17-39-49-add-role" author="akhmelev">
+        <createTable tableName="role">
+            <column name="value" type="VARCHAR(128)">
+                <constraints nullable="false"
+                             primaryKey="true"
+                             primaryKeyName="role_pkey"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="17-39-49-add-role-value" author="akhmelev">
+        <insert tableName="role">
+            <column name="value">ADMIN</column>
+        </insert>
+        <insert tableName="role">
+            <column name="value">USER</column>
+        </insert>
+        <insert tableName="role">
+            <column name="value">GUEST</column>
+        </insert>
+    </changeSet>
+
+    <changeSet id="17-40-01-add-users" author="akhmelev">
+        <createTable tableName="users">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="users_pkey"/>
+            </column>
+            <column name="login" type="VARCHAR(128)"/>
+            <column name="password" type="VARCHAR(256)"/>
+            <column name="role" type="VARCHAR(128)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="17-40-01-add-users-fk" author="akhmelev">
+        <addForeignKeyConstraint baseColumnNames="role"
+                                 baseTableName="users"
+                                 constraintName="fk_users_role"
+                                 onDelete="RESTRICT"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="value"
+                                 referencedTableName="role"/>
+    </changeSet>
+
+    <changeSet id="17-40-30-add-users-data" author="akhmelev">
+        <insert tableName="users">
+            <column name="login">Carl</column>
+            <column name="password">admin</column>
+            <column name="role">ADMIN</column>
+        </insert>
+        <insert tableName="users">
+            <column name="login">Alisa</column>
+            <column name="password">qwerty</column>
+            <column name="role">USER</column>
+        </insert>
+        <insert tableName="users">
+            <column name="login">Bob</column>
+            <column name="password">123</column>
+            <column name="role">GUEST</column>
+        </insert>
+    </changeSet>
+
+    <changeSet id="17-41-00-add-game_state" author="akhmelev">
+        <createTable tableName="game_state">
+            <column name="value" type="VARCHAR(64)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="game_state_pkey"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="17-41-01-add-game_state-data" author="akhmelev">
+        <insert tableName="game_state">
+            <column name="value">PLAY</column>
+        </insert>
+        <insert tableName="game_state">
+            <column name="value">WIN</column>
+        </insert>
+        <insert tableName="game_state">
+            <column name="value">LOST</column>
+        </insert>
+    </changeSet>
+
+    <changeSet id="17-42-22-add-quest" author="akhmelev">
+        <createTable tableName="quest">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="quest_pkey"/>
+            </column>
+            <column name="name" type="VARCHAR(512)"/>
+            <column name="text" type="VARCHAR(2048)"/>
+            <column name="start_question_id" type="BIGINT"/>
+            <column name="users_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="17-42-25-add-quest-fk" author="akhmelev">
+        <addForeignKeyConstraint baseColumnNames="users_id"
+                                 baseTableName="quest"
+                                 constraintName="fk_quest_users"
+                                 onDelete="SET NULL"
+                                 onUpdate="SET NULL"
+                                 referencedColumnNames="id"
+                                 referencedTableName="users"/>
+    </changeSet>
+
+    <changeSet id="17-43-17-question" author="akhmelev">
+        <createTable tableName="question">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="question_pkey"/>
+            </column>
+            <column name="text" type="VARCHAR(256)"/>
+            <column name="quest_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="game_state" type="VARCHAR(64)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="17-43-18-question-fk_game_state" author="akhmelev">
+        <addForeignKeyConstraint baseColumnNames="game_state"
+                                 baseTableName="question"
+                                 constraintName="fk_question_game_state"
+                                 onDelete="NO ACTION"
+                                 onUpdate="NO ACTION"
+                                 referencedColumnNames="value"
+                                 referencedTableName="game_state"/>
+    </changeSet>
+
+    <changeSet id="17-43-59-question-fk_quest" author="akhmelev">
+        <addForeignKeyConstraint baseColumnNames="quest_id"
+                                 baseTableName="question"
+                                 constraintName="fk_question_quest"
+                                 onDelete="CASCADE"
+                                 onUpdate="CASCADE"
+                                 referencedColumnNames="id"
+                                 referencedTableName="quest"/>
+    </changeSet>
+    <changeSet id="17-46-17-add-answer" author="akhmelev">
+        <createTable tableName="answer">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false"
+                             primaryKey="true"
+                             primaryKeyName="answer_pkey"/>
+            </column>
+            <column name="text" type="VARCHAR(256)"/>
+            <column name="next_question_id" type="BIGINT"/>
+            <column name="question_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="17-46-19-add-fk_answer_question" author="akhmelev">
+        <addForeignKeyConstraint baseColumnNames="question_id"
+                                 baseTableName="answer"
+                                 constraintName="fk_answer_question"
+                                 onDelete="CASCADE"
+                                 onUpdate="CASCADE"
+                                 referencedColumnNames="id"
+                                 referencedTableName="question"/>
+    </changeSet>
+
+    <changeSet id="17-46-50-add-game" author="akhmelev">
+        <createTable tableName="game">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false"
+                             primaryKey="true"
+                             primaryKeyName="game_pkey"/>
+            </column>
+            <column name="quest_id" type="BIGINT"/>
+            <column name="current_question_id" type="BIGINT"/>
+            <column name="users_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="game_state" type="VARCHAR(64)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="17-46-50-add-fk_game_game_state" author="akhmelev">
+        <addForeignKeyConstraint baseColumnNames="game_state"
+                                 baseTableName="game"
+                                 constraintName="fk_game_game_state"
+                                 onDelete="NO ACTION"
+                                 onUpdate="NO ACTION"
+                                 referencedColumnNames="value"
+                                 referencedTableName="game_state"/>
+    </changeSet>
+    <changeSet id="17-46-59-add-fk_game_users" author="akhmelev">
+        <addForeignKeyConstraint baseColumnNames="users_id"
+                                 baseTableName="game"
+                                 constraintName="fk_game_users"
+                                 onDelete="NO ACTION"
+                                 onUpdate="NO ACTION"
+                                 referencedColumnNames="id"
+                                 referencedTableName="users"/>
+    </changeSet>
+
+    <changeSet id="20-39-49-add-role"    author="akhmelev">
+        <createTable tableName="test">
+            <column name="value" type="VARCHAR(128)">
+                <constraints nullable="false"
+                             primaryKey="true"
+                             primaryKeyName="test_pkey"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

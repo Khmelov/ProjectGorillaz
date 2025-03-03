@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+
+    <changeSet id="17-39-49-add-role" author="akhmelev">
+        <createTable tableName="role">
+            <column name="value" type="VARCHAR(128)">
+                <constraints nullable="false"
+                             primaryKey="true"
+                             primaryKeyName="role_pkey"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="17-39-49-add-role-value" author="akhmelev">
+        <insert tableName="role">
+            <column name="value">ADMIN</column>
+        </insert>
+        <insert tableName="role">
+            <column name="value">USER</column>
+        </insert>
+        <insert tableName="role">
+            <column name="value">GUEST</column>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

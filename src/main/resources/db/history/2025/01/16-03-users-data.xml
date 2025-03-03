@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+
+    <changeSet id="17-40-30-add-users-data" author="akhmelev">
+        <insert tableName="users">
+            <column name="login">Carl</column>
+            <column name="password">admin</column>
+            <column name="role">ADMIN</column>
+        </insert>
+        <insert tableName="users">
+            <column name="login">Alisa</column>
+            <column name="password">qwerty</column>
+            <column name="role">USER</column>
+        </insert>
+        <insert tableName="users">
+            <column name="login">Bob</column>
+            <column name="password">123</column>
+            <column name="role">GUEST</column>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

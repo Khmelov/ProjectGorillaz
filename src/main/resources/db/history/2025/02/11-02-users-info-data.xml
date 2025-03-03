@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+
+    <changeSet id="22-58-31-add-users-data" author="akhmelev">
+        <insert tableName="user_info">
+            <column name="address">Pushkina 25, app.20</column>
+            <column name="phone">+375-33-1234567</column>
+            <column name="user_id">1</column>
+        </insert>
+        <insert tableName="user_info">
+            <column name="address">Lermontova 13, app.10</column>
+            <column name="phone">+7-099-1234567</column>
+            <column name="user_id">2</column>
+        </insert>
+        <insert tableName="user_info">
+            <column name="address">Gogolya 42, app.42</column>
+            <column name="phone">+38-050-1234567</column>
+            <column name="user_id">3</column>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
