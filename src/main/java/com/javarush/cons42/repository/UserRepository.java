@@ -1,7 +1,7 @@
-package com.javarush.ivanov.repository;
+package com.javarush.cons42.repository;
 
-import com.javarush.ivanov.entity.Role;
-import com.javarush.ivanov.entity.User;
+import com.javarush.cons42.entity.Role;
+import com.javarush.cons42.entity.User;
 
 import java.util.Collection;
 import java.util.HashMap;

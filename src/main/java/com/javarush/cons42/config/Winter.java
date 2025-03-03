@@ -1,4 +1,4 @@
-package com.javarush.ivanov.config;
+package com.javarush.cons42.config;
 
 import lombok.SneakyThrows;
 

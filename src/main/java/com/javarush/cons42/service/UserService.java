@@ -1,7 +1,7 @@
-package com.javarush.ivanov.service;
+package com.javarush.cons42.service;
 
-import com.javarush.ivanov.repository.UserRepository;
-import com.javarush.ivanov.entity.User;
+import com.javarush.cons42.repository.UserRepository;
+import com.javarush.cons42.entity.User;
 
 import java.util.Collection;
 import java.util.Optional;

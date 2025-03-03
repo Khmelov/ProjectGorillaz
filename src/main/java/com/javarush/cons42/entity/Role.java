@@ -1,4 +1,4 @@
-package com.javarush.ivanov.entity;
+package com.javarush.cons42.entity;
 
 public enum Role {
     USER, ADMIN, GUEST

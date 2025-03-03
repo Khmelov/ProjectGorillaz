@@ -1,7 +1,7 @@
-package com.javarush.ivanov.cmd;
+package com.javarush.cons42.cmd;
 
-import com.javarush.ivanov.entity.User;
-import com.javarush.ivanov.service.UserService;
+import com.javarush.cons42.entity.User;
+import com.javarush.cons42.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 
 import java.util.Collection;

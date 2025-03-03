@@ -1,8 +1,8 @@
-package com.javarush.ivanov.controller;
+package com.javarush.cons42.controller;
 
-import com.javarush.ivanov.cmd.Command;
-import com.javarush.ivanov.config.Winter;
-import com.javarush.ivanov.entity.Role;
+import com.javarush.cons42.cmd.Command;
+import com.javarush.cons42.config.Winter;
+import com.javarush.cons42.entity.Role;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

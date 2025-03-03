@@ -1,4 +1,4 @@
-package com.javarush.ivanov.entity;
+package com.javarush.cons42.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

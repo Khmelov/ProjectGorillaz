@@ -1,4 +1,4 @@
-package com.javarush.ivanov.cmd;
+package com.javarush.cons42.cmd;
 
 import jakarta.servlet.http.HttpServletRequest;
 
