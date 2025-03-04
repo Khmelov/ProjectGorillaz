@@ -20,5 +20,8 @@
         <Root level="info">
             <AppenderRef ref="SpringConsole"/>
         </Root>
+        <Logger name="com.javarush.khmelov">
+
+        </Logger>
     </Loggers>
 </Configuration>

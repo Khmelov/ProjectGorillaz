@@ -2,11 +2,9 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
-tomcat.*/
 
 ### IntelliJ IDEA ###
 .idea/
-*.iml
 
 ### Eclipse ###
 .apt_generated
